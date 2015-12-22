@@ -1,8 +1,8 @@
 var express = require('express');
 var port = process.env.PORT || 3001;
-var http = require('http')
-var request = require('request')
-var bodyParser = require('body-parser')
+var http = require('http');
+var request = require('request');
+var bodyParser = require('body-parser');
 
 var app = express();
 

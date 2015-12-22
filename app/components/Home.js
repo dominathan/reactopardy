@@ -10,11 +10,6 @@ var Home = React.createClass({
             This...is....Reactopardy
           </h1>
           <Category />
-          <Category />
-          <Category />
-          <Category />
-          <Category />
-          <Category />
         </div>
       </div>
     )

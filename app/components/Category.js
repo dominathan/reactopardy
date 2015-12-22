@@ -1,5 +1,5 @@
 var React = require('react');
-var Question = require('./Question');
+var QuestionBlock = require('./QuestionBlock');
 
 var Category = React.createClass({
   getInitialState: function() {
@@ -23,7 +23,7 @@ var Category = React.createClass({
     return (
       <div className='col-md-2 col-lg-2'>
         <h4>{this.state.category.text}</h4>
-        <Question questions={this.state.questions} />
+        <QuestionBlock category={this.state.category.text} questions={this.state.questions} />
       </div>
     );
   }

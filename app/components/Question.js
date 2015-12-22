@@ -1,24 +1,41 @@
 var React = require('react');
+var Modal = require('react-bootstrap/lib/Modal');
 
 var Question = React.createClass({
+  getInitialState: function() {
+    return { showModal: false };
+  },
+
+  close: function() {
+    this.setState({ showModal: false });
+  },
+
+  open: function() {
+    this.setState({ showModal: true });
+  },
 
   render: function() {
-    var questionList = this.props.questions.slice(0,5).map(function(question,idx) {
-      return (
-        <li className="list-group-item"
-            key={question.id}
-            data-question={question.question}
-            data-answer={question.answer}>
-          <h6>{++idx * 100}</h6>
-        </li>
-      );
-    });
     return (
-      <ul className="list-group">
-        {questionList}
-      </ul>
+      <div>
+        <li className="list-group-item"
+            key={this.props.id}
+            onClick={this.open}>
+          <h5>{this.props.amount}</h5>
+        </li>
+        <Modal show={this.state.showModal} onHide={this.close}>
+            <Modal.Header>
+              <Modal.Title>{this.props.category}</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <h4>{this.props.question}</h4>
+            </Modal.Body>
+            <Modal.Footer>
+              <button className="btn btn-lg btn-success" onClick={this.close}>Close</button>
+            </Modal.Footer>
+          </Modal>
+      </div>
     );
   }
 });
 
-module.exports = Question;
+module.exports = Question

@@ -3,11 +3,22 @@ var React = require('react');
 var Question = React.createClass({
 
   render: function() {
-  console.log(this.props);
+    var questionList = this.props.questions.slice(0,5).map(function(question,idx) {
+      return (
+        <li className="list-group-item"
+            key={question.id}
+            data-question={question.question}
+            data-answer={question.answer}>
+          <h6>{++idx * 100}</h6>
+        </li>
+      );
+    });
     return (
-      <h6>{this.props.question.test}</h6>
-    )
+      <ul className="list-group">
+        {questionList}
+      </ul>
+    );
   }
-})
+});
 
 module.exports = Question;

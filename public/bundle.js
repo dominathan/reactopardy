@@ -24419,7 +24419,7 @@
 	var React = __webpack_require__(1);
 	var Router = __webpack_require__(159);
 	var Home = __webpack_require__(211);
-	var Navbar = __webpack_require__(212);
+	var Navbar = __webpack_require__(214);
 	var Route = Router.Route;
 	var IndexRoute = Router.IndexRoute;
 
@@ -24436,17 +24436,30 @@
 	'use strict';
 
 	var React = __webpack_require__(1);
-	var Category = __webpack_require__(214);
+	var Category = __webpack_require__(212);
 
 	var Home = React.createClass({
 	  displayName: 'Home',
 
 	  render: function render() {
 	    return React.createElement(
-	      'h1',
-	      { className: 'text-center' },
-	      'This...is....Reactopardy',
-	      React.createElement(Category, null)
+	      'div',
+	      { className: 'container' },
+	      React.createElement(
+	        'div',
+	        { className: 'row' },
+	        React.createElement(
+	          'h1',
+	          { className: 'text-center' },
+	          'This...is....Reactopardy'
+	        ),
+	        React.createElement(Category, null),
+	        React.createElement(Category, null),
+	        React.createElement(Category, null),
+	        React.createElement(Category, null),
+	        React.createElement(Category, null),
+	        React.createElement(Category, null)
+	      )
 	    );
 	  }
 	});
@@ -24455,6 +24468,87 @@
 
 /***/ },
 /* 212 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+	var Question = __webpack_require__(213);
+
+	var Category = React.createClass({
+	  displayName: 'Category',
+
+	  getInitialState: function getInitialState() {
+	    return {
+	      category: { text: "" },
+	      questions: []
+	    };
+	  },
+	  componentDidMount: function componentDidMount() {
+	    $.get('/category', (function (result) {
+	      console.log(result);
+	      if (this.isMounted()) {
+	        this.setState({
+	          category: { text: result.title },
+	          questions: result.clues
+	        });
+	      }
+	    }).bind(this));
+	  },
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      { className: 'col-md-2 col-lg-2' },
+	      React.createElement(
+	        'h4',
+	        null,
+	        this.state.category.text
+	      ),
+	      React.createElement(Question, { questions: this.state.questions })
+	    );
+	  }
+	});
+
+	module.exports = Category;
+
+/***/ },
+/* 213 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(1);
+
+	var Question = React.createClass({
+	  displayName: "Question",
+
+	  render: function render() {
+	    var questionList = this.props.questions.slice(0, 5).map(function (question, idx) {
+	      return React.createElement(
+	        "li",
+	        { className: "list-group-item",
+	          key: question.id,
+	          "data-question": question.question,
+	          "data-answer": question.answer },
+	        React.createElement(
+	          "h6",
+	          null,
+	          ++idx * 100
+	        )
+	      );
+	    });
+	    return React.createElement(
+	      "ul",
+	      { className: "list-group" },
+	      questionList
+	    );
+	  }
+	});
+
+	module.exports = Question;
+
+/***/ },
+/* 214 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -24487,71 +24581,6 @@
 	});
 
 	module.exports = Navbar;
-
-/***/ },
-/* 213 */,
-/* 214 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var React = __webpack_require__(1);
-	var Question = __webpack_require__(215);
-
-	var Category = React.createClass({
-	  displayName: 'Category',
-
-	  getInitialState: function getInitialState() {
-	    return {
-	      question1: { test: "Hello" },
-	      question2: { test: "NOOOO" },
-	      question3: { test: "What about me" },
-	      question4: { test: "What about and me" },
-	      question5: { test: "What abou and me and me" }
-	    };
-	  },
-	  render: function render() {
-	    return React.createElement(
-	      'div',
-	      { className: 'col-md-2 col-lg-2' },
-	      React.createElement(
-	        'h4',
-	        null,
-	        'Category Name'
-	      ),
-	      React.createElement(Question, { question: this.state.question1 }),
-	      React.createElement(Question, { question: this.state.question2 }),
-	      React.createElement(Question, { question: this.state.question3 }),
-	      React.createElement(Question, { question: this.state.question4 }),
-	      React.createElement(Question, { question: this.state.question5 })
-	    );
-	  }
-	});
-
-	module.exports = Category;
-
-/***/ },
-/* 215 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var React = __webpack_require__(1);
-
-	var Question = React.createClass({
-	  displayName: 'Question',
-
-	  render: function render() {
-	    console.log(this.props);
-	    return React.createElement(
-	      'h6',
-	      null,
-	      this.props.question.test
-	    );
-	  }
-	});
-
-	module.exports = Question;
 
 /***/ }
 /******/ ]);

@@ -1,5 +1,6 @@
 var React = require('react');
 var Modal = require('react-bootstrap/lib/Modal');
+var Answer = require('./Answer');
 
 var Question = React.createClass({
   getInitialState: function() {
@@ -28,9 +29,11 @@ var Question = React.createClass({
             </Modal.Header>
             <Modal.Body>
               <h4>{this.props.question}</h4>
+              <Answer answer={this.props.answer} />
             </Modal.Body>
             <Modal.Footer>
-              <button className="btn btn-lg btn-success" onClick={this.close}>Close</button>
+
+              <button className="btn btn-lg btn-danger" onClick={this.close}>Close</button>
             </Modal.Footer>
           </Modal>
       </div>

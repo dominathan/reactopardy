@@ -7,8 +7,14 @@ var QuestionBlock = React.createClass({
     var category = this.props.category
     var questionList = this.props.questions.slice(0,5).map(function(question,idx) {
       return (
-        <Question category={category} question={question.question} answer={question.answer} id={question.question} amount={++idx * 100} />
-      )
+        <Question key={idx}
+                  category={category}
+                  question={question.question}
+                  answer={question.answer}
+                  id={question.id}
+                  amount={++idx * 100}
+        />
+      );
     });
 
     return (

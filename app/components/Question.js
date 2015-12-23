@@ -7,7 +7,9 @@ var Question = React.createClass({
   getInitialState: function() {
     return { showModal: false, beenAnswered: false };
   },
-
+  handleScore: function(amount) {
+    this.props.changeScore(amount)
+  },
   close: function() {
     this.setState({ showModal: false, beenAnswered: true });
     ReactDOM.findDOMNode(this).children[0].children[0].textContent = ""
@@ -34,7 +36,10 @@ var Question = React.createClass({
           </Modal.Body>
           <Modal.Footer>
 
-            <Answer answer={this.props.answer} closeModal={this.close} amount={this.props.amount} />
+            <Answer answer={this.props.answer}
+                    closeModal={this.close}
+                    amount={this.props.amount}
+                    changeScore={this.handleScore}/>
           </Modal.Footer>
         </Modal>
       </div>

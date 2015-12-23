@@ -24439,10 +24439,22 @@
 
 	var React = __webpack_require__(1);
 	var Category = __webpack_require__(212);
+	var Score = __webpack_require__(336);
 
 	var Home = React.createClass({
 	  displayName: 'Home',
 
+	  getInitialState: function getInitialState() {
+	    return {
+	      pointTotal: 0
+	    };
+	  },
+	  handleScore: function handleScore(score) {
+	    var changedAmount = this.state.pointTotal + score;
+	    this.setState({
+	      pointTotal: changedAmount
+	    });
+	  },
 	  render: function render() {
 	    return React.createElement(
 	      'div',
@@ -24450,12 +24462,17 @@
 	      React.createElement(
 	        'div',
 	        { className: 'row' },
-	        React.createElement(Category, null),
-	        React.createElement(Category, null),
-	        React.createElement(Category, null),
-	        React.createElement(Category, null),
-	        React.createElement(Category, null),
-	        React.createElement(Category, null)
+	        React.createElement(Category, { changeScore: this.handleScore }),
+	        React.createElement(Category, { changeScore: this.handleScore }),
+	        React.createElement(Category, { changeScore: this.handleScore }),
+	        React.createElement(Category, { changeScore: this.handleScore }),
+	        React.createElement(Category, { changeScore: this.handleScore }),
+	        React.createElement(Category, { changeScore: this.handleScore })
+	      ),
+	      React.createElement(
+	        'div',
+	        { className: 'row' },
+	        React.createElement(Score, { pointTotal: this.state.pointTotal })
 	      )
 	    );
 	  }
@@ -24481,15 +24498,18 @@
 	      questions: [{ id: 1, question: "A Test Question", answer: "A Test Answer" }, { id: 2, question: "A Test Question 2", answer: "A Test Answer 2" }, { id: 3, question: "A Test Question 3", answer: "A Test Answer 3" }, { id: 4, question: "A Test Question 4", answer: "A Test Answer 4" }, { id: 5, question: "A Test Question 5", answer: "A Test Answer 5" }]
 	    };
 	  },
+	  handleScore: function handleScore(amount) {
+	    this.props.changeScore(amount);
+	  },
 	  componentDidMount: function componentDidMount() {
-	    // $.get('/category', function(result) {
-	    //   if(this.isMounted()) {
-	    //     this.setState({
-	    //       category: {text: result.title},
-	    //       questions: result.clues
-	    //     });
-	    //   }
-	    // }.bind(this));
+	    $.get('/category', (function (result) {
+	      if (this.isMounted()) {
+	        this.setState({
+	          category: { text: result.title },
+	          questions: result.clues
+	        });
+	      }
+	    }).bind(this));
 	  },
 	  render: function render() {
 	    return React.createElement(
@@ -24504,7 +24524,9 @@
 	          this.state.category.text.toUpperCase()
 	        )
 	      ),
-	      React.createElement(QuestionBlock, { category: this.state.category.text, questions: this.state.questions })
+	      React.createElement(QuestionBlock, { category: this.state.category.text,
+	        questions: this.state.questions,
+	        changeScore: this.handleScore })
 	    );
 	  }
 	});
@@ -24524,10 +24546,15 @@
 	var QuestionBlock = React.createClass({
 	  displayName: 'QuestionBlock',
 
+	  handleScore: function handleScore(amount) {
+	    this.props.changeScore(amount);
+	  },
 	  render: function render() {
 	    var category = this.props.category;
+	    var self = this;
 	    var questionList = this.props.questions.slice(0, 5).map(function (question, idx) {
 	      return React.createElement(Question, { key: idx,
+	        changeScore: self.handleScore,
 	        category: category,
 	        question: question.question,
 	        answer: question.answer,
@@ -29460,7 +29487,9 @@
 	  getInitialState: function getInitialState() {
 	    return { showModal: false, beenAnswered: false };
 	  },
-
+	  handleScore: function handleScore(amount) {
+	    this.props.changeScore(amount);
+	  },
 	  close: function close() {
 	    this.setState({ showModal: false, beenAnswered: true });
 	    ReactDOM.findDOMNode(this).children[0].children[0].textContent = "";
@@ -29509,7 +29538,10 @@
 	        React.createElement(
 	          Modal.Footer,
 	          null,
-	          React.createElement(Answer, { answer: this.props.answer, closeModal: this.close, amount: this.props.amount })
+	          React.createElement(Answer, { answer: this.props.answer,
+	            closeModal: this.close,
+	            amount: this.props.amount,
+	            changeScore: this.handleScore })
 	        )
 	      )
 	    );
@@ -29544,6 +29576,7 @@
 	    event.preventDefault();
 	    var playerAnswer = this.answer.value.toLowerCase();
 	    var realAnswer = this.props.answer.replace(/<([^>]+>)/gi, "").toLowerCase();
+	    var pointVal = parseInt(this.props.amount);
 	    this.answer.value = '';
 	    console.log('Real Answer: ', realAnswer);
 	    console.log('Player Answer: ', playerAnswer);
@@ -29551,8 +29584,10 @@
 	    console.log("score", fuzzyAnswer);
 	    if (fuzzyAnswer >= 0.60) {
 	      console.log('CORRECT!!');
+	      this.props.changeScore(pointVal);
 	    } else {
 	      console.log('INCORRECT!!');
+	      this.props.changeScore(-pointVal);
 	    }
 	    this.close();
 	  },
@@ -29642,7 +29677,7 @@
 
 
 	// module
-	exports.push([module.id, "body {\n  background: url(\"http://media.tumblr.com/3dbd5685ac43abe11651330770539aec/tumblr_inline_mwu1dv3Xaf1s86a45.jpg\");\n  background-size: cover;\n  background-repeat: no-repeat; }\n\n.container {\n  margin-top: 3%; }\n\n.category {\n  height: 80px;\n  border-top: 6px solid black;\n  border-left: 6px solid black;\n  border-right: 6px solid black;\n  background-color: #232da5;\n  display: table-cell;\n  width: 200px;\n  vertical-align: middle; }\n  .category h4 {\n    text-align: center;\n    color: white;\n    text-shadow: 4px 4px black; }\n\n.list-group {\n  border: 6px solid black; }\n\n.list-group-item {\n  color: #d7b468;\n  height: 80px;\n  background-color: #232da5;\n  border-top: 6px solid black;\n  border-bottom: 6px solid black;\n  text-align: center;\n  border-top-left-radius: 0px;\n  border-top-right-radius: 0px; }\n  .list-group-item h5 {\n    font-size: 4.0em;\n    position: relative;\n    top: -35%;\n    text-shadow: 3px 3px black; }\n\n.list-group-item:first-child {\n  border-top-left-radius: 0px;\n  border-top-right-radius: 0px; }\n\n.col-lg-2, .col-md-2, .col-sm-2 {\n  padding: 0; }\n\n.modal-content {\n  width: 160%;\n  margin-left: -28%;\n  background-color: #232da5;\n  color: white;\n  text-align: center;\n  min-height: 500px; }\n  .modal-content h1 {\n    text-shadow: 4px 4px black;\n    font-size: 4.5em; }\n\n.modal-title {\n  text-align: center;\n  color: white; }\n\n.modal-footer form {\n  text-align: center; }\n  .modal-footer form input {\n    display: inline-block;\n    width: 85%;\n    height: 45px;\n    margin-right: 2%;\n    font-size: 20px; }\n", ""]);
+	exports.push([module.id, "body {\n  background: url(\"http://media.tumblr.com/3dbd5685ac43abe11651330770539aec/tumblr_inline_mwu1dv3Xaf1s86a45.jpg\");\n  background-size: cover;\n  background-repeat: no-repeat; }\n\n.container {\n  margin-top: 3%; }\n\n.category {\n  height: 80px;\n  border-top: 6px solid black;\n  border-left: 6px solid black;\n  border-right: 6px solid black;\n  background-color: #232da5;\n  display: table-cell;\n  width: 200px;\n  vertical-align: middle; }\n  .category h4 {\n    text-align: center;\n    color: white;\n    text-shadow: 4px 4px black; }\n\n.list-group {\n  border: 6px solid black; }\n\n.list-group-item {\n  color: #d7b468;\n  height: 80px;\n  background-color: #232da5;\n  border-top: 6px solid black;\n  border-bottom: 6px solid black;\n  text-align: center;\n  border-top-left-radius: 0px;\n  border-top-right-radius: 0px; }\n  .list-group-item h5 {\n    font-size: 4.0em;\n    position: relative;\n    top: -35%;\n    text-shadow: 3px 3px black; }\n\n.list-group-item:first-child {\n  border-top-left-radius: 0px;\n  border-top-right-radius: 0px; }\n\n.col-lg-2, .col-md-2, .col-sm-2 {\n  padding: 0; }\n\n.modal-content {\n  width: 160%;\n  margin-left: -28%;\n  background-color: #232da5;\n  color: white;\n  text-align: center;\n  min-height: 500px; }\n  .modal-content h1 {\n    text-shadow: 4px 4px black;\n    font-size: 4.5em; }\n\n.modal-title {\n  text-align: center;\n  color: white; }\n\n.modal-footer form {\n  text-align: center; }\n  .modal-footer form input {\n    display: inline-block;\n    width: 85%;\n    height: 45px;\n    margin-right: 2%;\n    font-size: 20px; }\n\n.score {\n  height: 100px;\n  border: 6px solid black;\n  background-color: #232da5;\n  display: table-cell;\n  width: 250px;\n  vertical-align: middle;\n  position: relative;\n  left: 25%; }\n  .score h4 {\n    text-align: center;\n    color: white;\n    text-shadow: 4px 4px black;\n    font-size: 4rem; }\n", ""]);
 
 	// exports
 
@@ -30066,6 +30101,37 @@
 	  return finalScore;
 	};
 
+
+/***/ },
+/* 336 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(1);
+
+	var Score = React.createClass({
+	  displayName: "Score",
+
+	  render: function render() {
+	    return React.createElement(
+	      "div",
+	      { className: "col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4" },
+	      React.createElement(
+	        "div",
+	        { className: "score" },
+	        React.createElement(
+	          "h4",
+	          null,
+	          "$",
+	          this.props.pointTotal
+	        )
+	      )
+	    );
+	  }
+	});
+
+	module.exports = Score;
 
 /***/ }
 /******/ ]);

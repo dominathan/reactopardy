@@ -12,15 +12,18 @@ var Category = React.createClass({
                   {id: 5, question: "A Test Question 5", answer: "A Test Answer 5"}]
     }
   },
+  handleScore: function(amount) {
+    this.props.changeScore(amount)
+  },
   componentDidMount: function() {
-    // $.get('/category', function(result) {
-    //   if(this.isMounted()) {
-    //     this.setState({
-    //       category: {text: result.title},
-    //       questions: result.clues
-    //     });
-    //   }
-    // }.bind(this));
+    $.get('/category', function(result) {
+      if(this.isMounted()) {
+        this.setState({
+          category: {text: result.title},
+          questions: result.clues
+        });
+      }
+    }.bind(this));
   },
   render: function() {
     return (
@@ -28,7 +31,9 @@ var Category = React.createClass({
         <div className="category">
           <h4>{this.state.category.text.toUpperCase()}</h4>
         </div>
-        <QuestionBlock category={this.state.category.text} questions={this.state.questions} />
+        <QuestionBlock category={this.state.category.text}
+                       questions={this.state.questions}
+                       changeScore={this.handleScore} />
       </div>
     );
   }

@@ -16,6 +16,7 @@ var Answer = React.createClass({
     event.preventDefault();
     var playerAnswer = this.answer.value.toLowerCase();
     var realAnswer = this.props.answer.replace(/<([^>]+>)/gi,"").toLowerCase();
+    var pointVal = parseInt(this.props.amount);
     this.answer.value = ''
     console.log('Real Answer: ', realAnswer)
     console.log('Player Answer: ', playerAnswer)
@@ -23,8 +24,10 @@ var Answer = React.createClass({
     console.log("score", fuzzyAnswer)
     if(fuzzyAnswer >= 0.60) {
       console.log('CORRECT!!');
+      this.props.changeScore(pointVal);
     } else {
       console.log('INCORRECT!!');
+      this.props.changeScore(-pointVal);
     }
     this.close();
   },

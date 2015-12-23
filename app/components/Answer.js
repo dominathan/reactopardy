@@ -1,5 +1,6 @@
 var React = require('react');
-var score = require('string_score')
+var score = require('string_score');
+var ReactDOM = require('react-dom');
 
 var Answer = React.createClass({
   propTypes: {
@@ -11,6 +12,10 @@ var Answer = React.createClass({
   },
   getAnswer: function(ref) {
     this.answer = ref;
+  },
+  componentDidMount: function() {
+    window.glob = ReactDOM.findDOMNode(this)
+    ReactDOM.findDOMNode(this).children[0].focus();
   },
   submitAnswer: function(event) {
     event.preventDefault();

@@ -29558,6 +29558,7 @@
 
 	var React = __webpack_require__(1);
 	var score = __webpack_require__(335);
+	var ReactDOM = __webpack_require__(158);
 
 	var Answer = React.createClass({
 	  displayName: 'Answer',
@@ -29571,6 +29572,10 @@
 	  },
 	  getAnswer: function getAnswer(ref) {
 	    this.answer = ref;
+	  },
+	  componentDidMount: function componentDidMount() {
+	    window.glob = ReactDOM.findDOMNode(this);
+	    ReactDOM.findDOMNode(this).children[0].focus();
 	  },
 	  submitAnswer: function submitAnswer(event) {
 	    event.preventDefault();

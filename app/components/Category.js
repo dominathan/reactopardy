@@ -13,14 +13,14 @@ var Category = React.createClass({
     }
   },
   componentDidMount: function() {
-    $.get('/category', function(result) {
-      if(this.isMounted()) {
-        this.setState({
-          category: {text: result.title},
-          questions: result.clues
-        });
-      }
-    }.bind(this));
+    // $.get('/category', function(result) {
+    //   if(this.isMounted()) {
+    //     this.setState({
+    //       category: {text: result.title},
+    //       questions: result.clues
+    //     });
+    //   }
+    // }.bind(this));
   },
   render: function() {
     return (

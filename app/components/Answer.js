@@ -31,7 +31,7 @@ var Answer = React.createClass({
   render: function() {
     return (
       <form onSubmit={this.submitAnswer}>
-        <input type='text' className="form-control" ref={this.getAnswer} placeholder="No 'What is' Needed" />
+        <input type='text' className="form-control" ref={this.getAnswer} placeholder="No 'What is' Needed" autofocus='true' />
         <button type="submit" className="btn btn-lg btn-success" onClick={this.submitAnswer}>Answer</button>
       </form>
     );

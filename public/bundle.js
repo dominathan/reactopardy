@@ -24482,14 +24482,14 @@
 	    };
 	  },
 	  componentDidMount: function componentDidMount() {
-	    $.get('/category', (function (result) {
-	      if (this.isMounted()) {
-	        this.setState({
-	          category: { text: result.title },
-	          questions: result.clues
-	        });
-	      }
-	    }).bind(this));
+	    // $.get('/category', function(result) {
+	    //   if(this.isMounted()) {
+	    //     this.setState({
+	    //       category: {text: result.title},
+	    //       questions: result.clues
+	    //     });
+	    //   }
+	    // }.bind(this));
 	  },
 	  render: function render() {
 	    return React.createElement(
@@ -29560,7 +29560,7 @@
 	    return React.createElement(
 	      'form',
 	      { onSubmit: this.submitAnswer },
-	      React.createElement('input', { type: 'text', className: 'form-control', ref: this.getAnswer, placeholder: 'No \'What is\' Needed' }),
+	      React.createElement('input', { type: 'text', className: 'form-control', ref: this.getAnswer, placeholder: 'No \'What is\' Needed', autofocus: 'true' }),
 	      React.createElement(
 	        'button',
 	        { type: 'submit', className: 'btn btn-lg btn-success', onClick: this.submitAnswer },
@@ -29642,7 +29642,7 @@
 
 
 	// module
-	exports.push([module.id, "body {\n  background: url(\"http://media.tumblr.com/3dbd5685ac43abe11651330770539aec/tumblr_inline_mwu1dv3Xaf1s86a45.jpg\");\n  background-size: cover;\n  background-repeat: no-repeat; }\n\n.container {\n  margin-top: 3%; }\n\n.category {\n  height: 80px;\n  border-top: 6px solid black;\n  border-left: 6px solid black;\n  border-right: 6px solid black;\n  background-color: #232da5;\n  display: table-cell;\n  width: 200px;\n  vertical-align: middle; }\n  .category h4 {\n    text-align: center;\n    color: white;\n    text-shadow: 4px 4px black; }\n\n.list-group {\n  border: 6px solid black; }\n\n.list-group-item {\n  color: #d7b468;\n  height: 80px;\n  background-color: #232da5;\n  border-top: 6px solid black;\n  border-bottom: 6px solid black;\n  text-align: center;\n  border-top-left-radius: 0px;\n  border-top-right-radius: 0px; }\n  .list-group-item h5 {\n    font-size: 4.0em;\n    position: relative;\n    top: -35%;\n    text-shadow: 3px 3px black; }\n\n.list-group-item:first-child {\n  border-top-left-radius: 0px;\n  border-top-right-radius: 0px; }\n\n.col-lg-2, .col-md-2, .col-sm-2 {\n  padding: 0; }\n\n.modal-content {\n  width: 160%;\n  margin-left: -28%;\n  background-color: #232da5;\n  color: white;\n  text-align: center;\n  min-height: 500px; }\n  .modal-content h1 {\n    text-shadow: 4px 4px black;\n    font-size: 4.5em; }\n\n.modal-title {\n  text-align: center;\n  color: white; }\n\n.modal-footer div {\n  text-align: center; }\n  .modal-footer div input {\n    display: inline-block;\n    width: 85%;\n    height: 45px;\n    margin-right: 2%;\n    font-size: 20px; }\n", ""]);
+	exports.push([module.id, "body {\n  background: url(\"http://media.tumblr.com/3dbd5685ac43abe11651330770539aec/tumblr_inline_mwu1dv3Xaf1s86a45.jpg\");\n  background-size: cover;\n  background-repeat: no-repeat; }\n\n.container {\n  margin-top: 3%; }\n\n.category {\n  height: 80px;\n  border-top: 6px solid black;\n  border-left: 6px solid black;\n  border-right: 6px solid black;\n  background-color: #232da5;\n  display: table-cell;\n  width: 200px;\n  vertical-align: middle; }\n  .category h4 {\n    text-align: center;\n    color: white;\n    text-shadow: 4px 4px black; }\n\n.list-group {\n  border: 6px solid black; }\n\n.list-group-item {\n  color: #d7b468;\n  height: 80px;\n  background-color: #232da5;\n  border-top: 6px solid black;\n  border-bottom: 6px solid black;\n  text-align: center;\n  border-top-left-radius: 0px;\n  border-top-right-radius: 0px; }\n  .list-group-item h5 {\n    font-size: 4.0em;\n    position: relative;\n    top: -35%;\n    text-shadow: 3px 3px black; }\n\n.list-group-item:first-child {\n  border-top-left-radius: 0px;\n  border-top-right-radius: 0px; }\n\n.col-lg-2, .col-md-2, .col-sm-2 {\n  padding: 0; }\n\n.modal-content {\n  width: 160%;\n  margin-left: -28%;\n  background-color: #232da5;\n  color: white;\n  text-align: center;\n  min-height: 500px; }\n  .modal-content h1 {\n    text-shadow: 4px 4px black;\n    font-size: 4.5em; }\n\n.modal-title {\n  text-align: center;\n  color: white; }\n\n.modal-footer form {\n  text-align: center; }\n  .modal-footer form input {\n    display: inline-block;\n    width: 85%;\n    height: 45px;\n    margin-right: 2%;\n    font-size: 20px; }\n", ""]);
 
 	// exports
 

@@ -2,12 +2,12 @@
   "name": "reactopardy",
   "version": "1.0.0",
   "description": "react meets jeopardy",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Nathan M. W. Hall",
-  "license": "ISC",
+  "license": "MIT license",
   "dependencies": {
     "body-parser": "^1.14.2",
     "express": "^4.13.3",

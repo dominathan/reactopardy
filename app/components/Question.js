@@ -1,26 +1,27 @@
 var React = require('react');
+var ReactDOM = require('react-dom');
 var Modal = require('react-bootstrap/lib/Modal');
 var Answer = require('./Answer');
 
 var Question = React.createClass({
   getInitialState: function() {
-    return { showModal: false };
+    return { showModal: false, beenAnswered: false };
   },
 
   close: function() {
-    this.setState({ showModal: false });
+    this.setState({ showModal: false, beenAnswered: true });
+    ReactDOM.findDOMNode(this).children[0].children[0].textContent = ""
   },
 
   open: function() {
     this.setState({ showModal: true });
   },
-
   render: function() {
     return (
       <div>
         <li className="list-group-item"
             key={this.props.id}
-            onClick={this.open}>
+            onClick={this.state.beenAnswered ? "" : this.open}>
           <h5>${this.props.amount}</h5>
         </li>
         <Modal show={this.state.showModal} onHide={this.close}>
@@ -33,7 +34,7 @@ var Question = React.createClass({
           </Modal.Body>
           <Modal.Footer>
 
-            <Answer answer={this.props.answer}/>
+            <Answer answer={this.props.answer} closeModal={this.close} amount={this.props.amount} />
           </Modal.Footer>
         </Modal>
       </div>
@@ -41,4 +42,4 @@ var Question = React.createClass({
   }
 });
 
-module.exports = Question
+module.exports = Question;

@@ -4,7 +4,7 @@ var Question = require('./Question');
 
 var QuestionBlock = React.createClass({
   render: function() {
-    var category = this.props.category
+    var category = this.props.category;
     var questionList = this.props.questions.slice(0,5).map(function(question,idx) {
       return (
         <Question key={idx}
@@ -12,7 +12,7 @@ var QuestionBlock = React.createClass({
                   question={question.question}
                   answer={question.answer}
                   id={question.id}
-                  amount={++idx * 100}
+                  amount={++idx * 200}
         />
       );
     });

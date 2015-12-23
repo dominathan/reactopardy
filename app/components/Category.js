@@ -13,18 +13,18 @@ var Category = React.createClass({
     }
   },
   componentDidMount: function() {
-    // $.get('/category', function(result) {
-    //   if(this.isMounted()) {
-    //     this.setState({
-    //       category: {text: result.title},
-    //       questions: result.clues
-    //     });
-    //   }
-    // }.bind(this));
+    $.get('/category', function(result) {
+      if(this.isMounted()) {
+        this.setState({
+          category: {text: result.title},
+          questions: result.clues
+        });
+      }
+    }.bind(this));
   },
   render: function() {
     return (
-      <div className='col-md-2 col-lg-2'>
+      <div className='col-md-2 col-lg-2 col-sm-2'>
         <div className="category">
           <h4>{this.state.category.text.toUpperCase()}</h4>
         </div>

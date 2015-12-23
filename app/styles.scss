@@ -20,6 +20,7 @@ body {
   h4 {
     text-align: center;
     color: white;
+    text-shadow: 4px 4px black;
   }
 }
 
@@ -37,10 +38,10 @@ body {
   border-top-left-radius: 0px;
   border-top-right-radius: 0px;
   h5 {
-    font-size: 3.0em;
+    font-size: 4.0em;
     position: relative;
-    top: -15%;
-
+    top: -35%;
+    text-shadow: 3px 3px black;
   }
 }
 
@@ -49,7 +50,7 @@ body {
     border-top-right-radius: 0px;
 }
 
-.col-lg-2, .col-md-2 {
+.col-lg-2, .col-md-2, .col-sm-2 {
   padding: 0;
 }
 
@@ -60,6 +61,10 @@ body {
   color: white;
   text-align: center;
   min-height: 500px;
+  h1 {
+    text-shadow: 4px 4px black;
+    font-size: 4.5em;
+  }
 }
 
 .modal-title {
@@ -74,5 +79,6 @@ body {
     width: 85%;
     height: 45px;
     margin-right: 2%;
+    font-size: 20px;
   }
 }

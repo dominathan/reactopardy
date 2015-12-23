@@ -25,7 +25,9 @@ var Category = React.createClass({
   render: function() {
     return (
       <div className='col-md-2 col-lg-2'>
-        <h4>{this.state.category.text}</h4>
+        <div className="category">
+          <h4>{this.state.category.text.toUpperCase()}</h4>
+        </div>
         <QuestionBlock category={this.state.category.text} questions={this.state.questions} />
       </div>
     );

@@ -21,21 +21,21 @@ var Question = React.createClass({
         <li className="list-group-item"
             key={this.props.id}
             onClick={this.open}>
-          <h5>{this.props.amount}</h5>
+          <h5>${this.props.amount}</h5>
         </li>
         <Modal show={this.state.showModal} onHide={this.close}>
-            <Modal.Header>
-              <Modal.Title>{this.props.category}</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <h4>{this.props.question}</h4>
-              <Answer answer={this.props.answer} />
-            </Modal.Body>
-            <Modal.Footer>
+          <Modal.Header>
+            <Modal.Title>{this.props.category.toUpperCase()}</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <h1>{this.props.question}</h1>
 
-              <button className="btn btn-lg btn-danger" onClick={this.close}>Close</button>
-            </Modal.Footer>
-          </Modal>
+          </Modal.Body>
+          <Modal.Footer>
+
+            <Answer answer={this.props.answer}/>
+          </Modal.Footer>
+        </Modal>
       </div>
     );
   }

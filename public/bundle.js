@@ -24450,11 +24450,6 @@
 	      React.createElement(
 	        'div',
 	        { className: 'row' },
-	        React.createElement(
-	          'h1',
-	          { className: 'text-center' },
-	          'This...is....Reactopardy'
-	        ),
 	        React.createElement(Category, null),
 	        React.createElement(Category, null),
 	        React.createElement(Category, null),
@@ -24501,9 +24496,13 @@
 	      'div',
 	      { className: 'col-md-2 col-lg-2' },
 	      React.createElement(
-	        'h4',
-	        null,
-	        this.state.category.text
+	        'div',
+	        { className: 'category' },
+	        React.createElement(
+	          'h4',
+	          null,
+	          this.state.category.text.toUpperCase()
+	        )
 	      ),
 	      React.createElement(QuestionBlock, { category: this.state.category.text, questions: this.state.questions })
 	    );
@@ -29481,6 +29480,7 @@
 	        React.createElement(
 	          'h5',
 	          null,
+	          '$',
 	          this.props.amount
 	        )
 	      ),
@@ -29493,27 +29493,22 @@
 	          React.createElement(
 	            Modal.Title,
 	            null,
-	            this.props.category
+	            this.props.category.toUpperCase()
 	          )
 	        ),
 	        React.createElement(
 	          Modal.Body,
 	          null,
 	          React.createElement(
-	            'h4',
+	            'h1',
 	            null,
 	            this.props.question
-	          ),
-	          React.createElement(Answer, { answer: this.props.answer })
+	          )
 	        ),
 	        React.createElement(
 	          Modal.Footer,
 	          null,
-	          React.createElement(
-	            'button',
-	            { className: 'btn btn-lg btn-danger', onClick: this.close },
-	            'Close'
-	          )
+	          React.createElement(Answer, { answer: this.props.answer })
 	        )
 	      )
 	    );
@@ -29619,7 +29614,7 @@
 
 
 	// module
-	exports.push([module.id, "body {\n  background-color: orange; }\n", ""]);
+	exports.push([module.id, "body {\n  background: url(\"http://media.tumblr.com/3dbd5685ac43abe11651330770539aec/tumblr_inline_mwu1dv3Xaf1s86a45.jpg\");\n  background-size: cover;\n  background-repeat: no-repeat; }\n\n.container {\n  margin-top: 3%; }\n\n.category {\n  height: 80px;\n  border-top: 6px solid black;\n  border-left: 6px solid black;\n  border-right: 6px solid black;\n  background-color: #232da5;\n  display: table-cell;\n  width: 200px;\n  vertical-align: middle; }\n  .category h4 {\n    text-align: center;\n    color: white; }\n\n.list-group {\n  border: 6px solid black; }\n\n.list-group-item {\n  color: #d7b468;\n  height: 80px;\n  background-color: #232da5;\n  border-top: 6px solid black;\n  border-bottom: 6px solid black;\n  text-align: center;\n  border-top-left-radius: 0px;\n  border-top-right-radius: 0px; }\n  .list-group-item h5 {\n    font-size: 3.0em;\n    position: relative;\n    top: -15%; }\n\n.list-group-item:first-child {\n  border-top-left-radius: 0px;\n  border-top-right-radius: 0px; }\n\n.col-lg-2, .col-md-2 {\n  padding: 0; }\n\n.modal-content {\n  width: 160%;\n  margin-left: -28%;\n  background-color: #232da5;\n  color: white;\n  text-align: center;\n  min-height: 500px; }\n\n.modal-title {\n  text-align: center;\n  color: white; }\n\n.modal-footer div {\n  text-align: center; }\n  .modal-footer div input {\n    display: inline-block;\n    width: 85%;\n    height: 45px;\n    margin-right: 2%; }\n", ""]);
 
 	// exports
 

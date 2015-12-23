@@ -6,9 +6,7 @@ var Home = React.createClass({
     return (
       <div className="container">
         <div className="row">
-          <h1 className="text-center">
-            This...is....Reactopardy
-          </h1>
+
           <Category />
           <Category />
           <Category />

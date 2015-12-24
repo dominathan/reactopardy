@@ -94,7 +94,7 @@
 
 
 	// module
-	exports.push([module.id, "body {\n  background: url(\"http://media.tumblr.com/3dbd5685ac43abe11651330770539aec/tumblr_inline_mwu1dv3Xaf1s86a45.jpg\");\n  background-size: cover;\n  background-repeat: no-repeat; }\n\n.container {\n  margin-top: 3%; }\n\n.category {\n  height: 80px;\n  border-top: 6px solid black;\n  border-left: 6px solid black;\n  border-right: 6px solid black;\n  background-color: #232da5;\n  display: table-cell;\n  width: 200px;\n  vertical-align: middle; }\n  .category h4 {\n    text-align: center;\n    color: white;\n    text-shadow: 4px 4px black; }\n\n.list-group {\n  border: 6px solid black; }\n\n.list-group-item {\n  color: #d7b468;\n  height: 80px;\n  background-color: #232da5;\n  border-top: 6px solid black;\n  border-bottom: 6px solid black;\n  text-align: center;\n  border-top-left-radius: 0px;\n  border-top-right-radius: 0px; }\n  .list-group-item h5 {\n    font-size: 4.0em;\n    position: relative;\n    top: -35%;\n    text-shadow: 3px 3px black; }\n\n.list-group-item:first-child {\n  border-top-left-radius: 0px;\n  border-top-right-radius: 0px; }\n\n.col-lg-2, .col-md-2, .col-sm-2 {\n  padding: 0; }\n\n.modal-content {\n  width: 160%;\n  margin-left: -28%;\n  background-color: #232da5;\n  color: white;\n  text-align: center;\n  min-height: 500px; }\n  .modal-content h1 {\n    text-shadow: 4px 4px black;\n    font-size: 4.5em; }\n\n.modal-title {\n  text-align: center;\n  color: white; }\n\n.modal-footer form {\n  text-align: center; }\n  .modal-footer form input {\n    display: inline-block;\n    width: 85%;\n    height: 45px;\n    margin-right: 2%;\n    font-size: 20px; }\n\n.score {\n  height: 100px;\n  border: 6px solid black;\n  background-color: #232da5;\n  display: table-cell;\n  width: 250px;\n  vertical-align: middle;\n  position: relative;\n  left: 25%; }\n  .score h4 {\n    text-align: center;\n    color: white;\n    text-shadow: 4px 4px black;\n    font-size: 4rem; }\n\n.correct-answer {\n  height: 100px;\n  border: 6px solid black;\n  background-color: #232da5;\n  display: table-cell;\n  width: 250px;\n  vertical-align: middle;\n  position: relative;\n  left: 25%; }\n  .correct-answer h4 {\n    text-align: center;\n    color: white;\n    text-shadow: 4px 4px black;\n    font-size: 2rem; }\n", ""]);
+	exports.push([module.id, "body {\n  background: url(\"http://media.tumblr.com/3dbd5685ac43abe11651330770539aec/tumblr_inline_mwu1dv3Xaf1s86a45.jpg\");\n  background-size: cover;\n  background-repeat: no-repeat; }\n\n.container {\n  margin-top: 3%; }\n\n.category {\n  height: 80px;\n  border-top: 6px solid black;\n  border-left: 6px solid black;\n  border-right: 6px solid black;\n  background-color: #232da5;\n  display: table-cell;\n  width: 200px;\n  vertical-align: middle; }\n  .category h4 {\n    text-align: center;\n    color: white;\n    text-shadow: 4px 4px black; }\n\n.list-group {\n  border: 6px solid black; }\n\n.list-group-item {\n  color: #d7b468;\n  height: 80px;\n  background-color: #232da5;\n  border-top: 6px solid black;\n  border-bottom: 6px solid black;\n  text-align: center;\n  border-top-left-radius: 0px;\n  border-top-right-radius: 0px; }\n  .list-group-item h5 {\n    font-size: 4.0em;\n    position: relative;\n    top: -35%;\n    text-shadow: 3px 3px black; }\n\n.list-group-item:first-child {\n  border-top-left-radius: 0px;\n  border-top-right-radius: 0px; }\n\n.col-lg-2, .col-md-2, .col-sm-2 {\n  padding: 0; }\n\n.modal-content {\n  width: 160%;\n  margin-left: -28%;\n  background-color: #232da5;\n  color: white;\n  text-align: center;\n  min-height: 500px; }\n  .modal-content h1 {\n    text-shadow: 4px 4px black;\n    font-size: 4.5em; }\n\n.modal-title {\n  text-align: center;\n  color: white; }\n\n.modal-footer form {\n  text-align: center; }\n  .modal-footer form input {\n    display: inline-block;\n    width: 85%;\n    height: 45px;\n    margin-right: 2%;\n    font-size: 20px; }\n\n.score {\n  height: 100px;\n  border: 6px solid black;\n  background-color: #232da5;\n  display: table-cell;\n  width: 250px;\n  vertical-align: middle;\n  position: relative;\n  left: 25%; }\n  .score h4 {\n    text-align: center;\n    color: white;\n    text-shadow: 4px 4px black;\n    font-size: 4rem; }\n\n.correct-answer {\n  height: 100px;\n  border: 6px solid black;\n  background-color: #232da5;\n  display: table-cell;\n  width: 250px;\n  vertical-align: middle;\n  position: relative;\n  left: 25%; }\n  .correct-answer h4 {\n    text-align: center;\n    color: white;\n    text-shadow: 4px 4px black;\n    font-size: 2rem; }\n\n.spinner {\n  margin: 100px auto;\n  width: 50px;\n  height: 40px;\n  text-align: center;\n  font-size: 10px; }\n\n.spinner > div {\n  background-color: #FFF;\n  height: 100%;\n  width: 6px;\n  display: inline-block;\n  -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;\n  animation: sk-stretchdelay 1.2s infinite ease-in-out; }\n\n.spinner .rect2 {\n  -webkit-animation-delay: -1.1s;\n  animation-delay: -1.1s; }\n\n.spinner .rect3 {\n  -webkit-animation-delay: -1.0s;\n  animation-delay: -1.0s; }\n\n.spinner .rect4 {\n  -webkit-animation-delay: -0.9s;\n  animation-delay: -0.9s; }\n\n.spinner .rect5 {\n  -webkit-animation-delay: -0.8s;\n  animation-delay: -0.8s; }\n\n@-webkit-keyframes sk-stretchdelay {\n  0%, 40%, 100% {\n    -webkit-transform: scaleY(0.4); }\n  20% {\n    -webkit-transform: scaleY(1); } }\n\n@keyframes sk-stretchdelay {\n  0%, 40%, 100% {\n    transform: scaleY(0.4);\n    -webkit-transform: scaleY(0.4); }\n  20% {\n    transform: scaleY(1);\n    -webkit-transform: scaleY(1); } }\n", ""]);
 
 	// exports
 
@@ -24863,14 +24863,14 @@
 	    this.props.correctAnswer(answer);
 	  },
 	  componentDidMount: function componentDidMount() {
-	    // $.get('/category', function(result) {
-	    //   if(this.isMounted()) {
-	    //     this.setState({
-	    //       category: {text: result.title},
-	    //       questions: result.clues
-	    //     });
-	    //   }
-	    // }.bind(this));
+	    $.get('/category', (function (result) {
+	      if (this.isMounted()) {
+	        this.setState({
+	          category: { text: result.title },
+	          questions: result.clues
+	        });
+	      }
+	    }).bind(this));
 	  },
 	  render: function render() {
 	    return React.createElement(
@@ -29933,12 +29933,20 @@
 	var Answer = React.createClass({
 	  displayName: 'Answer',
 
+	  getInitialState: function getInitialState() {
+	    return {
+	      loading: false
+	    };
+	  },
 	  propTypes: {
 	    closeModal: React.PropTypes.func.isRequired,
 	    answer: React.PropTypes.string.isRequired
 	  },
-	  close: function close() {
-	    return this.props.closeModal();
+	  close: function close(event) {
+	    event.preventDefault();
+	    var realAnswer = this.props.answer.replace(/<([^>]+>)/gi, "").replace(/\(|\)/gi, "").replace(/^(the|a|an|a)\s?/gi, "").replace(/"/g, "").toLowerCase();
+	    this.props.correctAnswer(realAnswer);
+	    this.props.closeModal();
 	  },
 	  getAnswer: function getAnswer(ref) {
 	    this.answer = ref;
@@ -29967,6 +29975,9 @@
 	  },
 	  speechRecognition: function speechRecognition() {
 	    var defer = $.Deferred();
+	    this.setState({
+	      loading: true
+	    });
 	    console.log('defer', defer);
 	    var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition || mozSpeechRecognition || msSpeechRecognition || oSpeechRecognition;
 	    var recognition = new SpeechRecognition();
@@ -29982,6 +29993,9 @@
 	    event.preventDefault();
 	    var self = this;
 	    this.speechRecognition().then(function (data) {
+	      self.setState({
+	        loading: false
+	      });
 	      var playerAnswer = data.replace(/^what\sis|^who\sis|^what\sare|^who\sare/gi, "").replace(/^(the|a|an|a)\s?/gi, "").replace(/^\s+/gi, "").toLowerCase();
 	      var realAnswer = self.props.answer.replace(/<([^>]+>)/gi, "").replace(/\(|\)/gi, "").replace(/^(the|a|an|a)\s?/gi, "").replace(/"/g, "").toLowerCase();
 	      var pointVal = parseInt(self.props.amount);
@@ -29998,13 +30012,25 @@
 	        self.props.changeScore(-pointVal);
 	      }
 	    }).then(function () {
-	      self.close();
+	      self.close(event);
 	    });
 	  },
 	  render: function render() {
+	    var styles = {
+	      display: 'none'
+	    };
 	    return React.createElement(
 	      'form',
 	      null,
+	      React.createElement(
+	        'div',
+	        { style: this.state.loading ? {} : styles, className: 'spinner' },
+	        React.createElement('div', { className: 'rect1' }),
+	        React.createElement('div', { className: 'rect2' }),
+	        React.createElement('div', { className: 'rect3' }),
+	        React.createElement('div', { className: 'rect4' }),
+	        React.createElement('div', { className: 'rect5' })
+	      ),
 	      React.createElement(
 	        'button',
 	        { type: 'submit', className: 'btn btn-lg btn-success', onClick: this.checkSpeech },

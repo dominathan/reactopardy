@@ -3,12 +3,24 @@ var score = require('string_score');
 var ReactDOM = require('react-dom');
 
 var Answer = React.createClass({
+  getInitialState: function() {
+    return {
+      loading: false
+    }
+  },
   propTypes: {
     closeModal: React.PropTypes.func.isRequired,
     answer: React.PropTypes.string.isRequired
   },
-  close: function() {
-    return this.props.closeModal();
+  close: function(event) {
+    event.preventDefault();
+    var realAnswer = this.props.answer.replace(/<([^>]+>)/gi,"")
+                                      .replace(/\(|\)/gi,"")
+                                      .replace(/^(the|a|an|a)\s?/gi,"")
+                                      .replace(/"/g,"")
+                                      .toLowerCase();
+    this.props.correctAnswer(realAnswer);
+    this.props.closeModal();
   },
   getAnswer: function(ref) {
     this.answer = ref;
@@ -37,6 +49,9 @@ var Answer = React.createClass({
   },
   speechRecognition: function() {
     var defer = $.Deferred();
+    this.setState({
+      loading: true
+    });
     console.log('defer', defer);
     var SpeechRecognition = SpeechRecognition ||
                             webkitSpeechRecognition ||
@@ -56,6 +71,9 @@ var Answer = React.createClass({
     event.preventDefault();
     var self = this;
     this.speechRecognition().then(function(data){
+      self.setState({
+        loading: false
+      });
       var playerAnswer = data.replace(/^what\sis|^who\sis|^what\sare|^who\sare/gi,"")
                              .replace(/^(the|a|an|a)\s?/gi,"")
                              .replace(/^\s+/gi,"")
@@ -79,12 +97,22 @@ var Answer = React.createClass({
         self.props.changeScore(-pointVal);
       }
     }).then(function() {
-      self.close()
+      self.close(event);
     });
   },
   render: function() {
+    var styles = {
+      display: 'none'
+    };
     return (
       <form>
+      <div style={(this.state.loading) ? {} : styles} className="spinner">
+          <div className="rect1"></div>
+          <div className="rect2"></div>
+          <div className="rect3"></div>
+          <div className="rect4"></div>
+          <div className="rect5"></div>
+        </div>
         <button type="submit" className="btn btn-lg btn-success" onClick={this.checkSpeech}>Speak Answer</button>
         <button type="submit" className="btn btn-lg btn-danger" onClick={this.close}>Pass</button>
       </form>

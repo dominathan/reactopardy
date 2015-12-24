@@ -30244,9 +30244,13 @@
 	          "This...Is.........REACT-PARDY"
 	        ),
 	        React.createElement(
-	          "button",
-	          { className: "btn btn-md btn-success" },
-	          "Restart"
+	          "a",
+	          { href: "/" },
+	          React.createElement(
+	            "button",
+	            { className: "btn btn-md btn-success" },
+	            "Restart"
+	          )
 	        )
 	      ),
 	      React.createElement(

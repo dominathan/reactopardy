@@ -14,7 +14,6 @@ var Answer = React.createClass({
     this.answer = ref;
   },
   componentDidMount: function() {
-    window.glob = ReactDOM.findDOMNode(this)
     ReactDOM.findDOMNode(this).children[0].focus();
   },
   submitAnswer: function(event) {
@@ -36,11 +35,53 @@ var Answer = React.createClass({
     }
     this.close();
   },
+  speechRecognition: function() {
+    var defer = $.Deferred();
+    console.log('defer', defer) ;
+    var recognition = new webkitSpeechRecognition();
+    recognition.continuous = false;
+    recognition.interimResults = false;
+    recognition.onresult = function(event) {
+      defer.resolve(event.results[0][0].transcript);
+    }
+    recognition.start();
+    return defer;
+  },
+  checkSpeech: function(event) {
+    event.preventDefault();
+    var self = this;
+    this.speechRecognition().then(function(data){
+      var playerAnswer = data.replace(/^what\sis|^who\sis|^what\sare|^who\sare/gi,"")
+                             .replace(/^(the|a|an|a)\s?/gi,"")
+                             .replace(/^\s+/gi,"")
+                             .toLowerCase();
+      var realAnswer = self.props.answer.replace(/<([^>]+>)/gi,"")
+                                        .replace(/\(|\)/gi,"")
+                                        .replace(/^(the|a|an|a)\s?/gi,"")
+                                        .replace(/"/g,"")
+                                        .toLowerCase();
+      var pointVal = parseInt(self.props.amount);
+      console.log('Real Answer: ', realAnswer)
+      console.log('Player Answer: ', playerAnswer)
+      var fuzzyAnswer = realAnswer.score(playerAnswer)
+      self.props.correctAnswer(realAnswer);
+      console.log("score", fuzzyAnswer)
+      if(fuzzyAnswer >= 0.60) {
+        console.log('CORRECT!!');
+        self.props.changeScore(pointVal);
+      } else {
+        console.log('INCORRECT!!');
+        self.props.changeScore(-pointVal);
+      }
+    }).then(function() {
+      self.close()
+    });
+  },
   render: function() {
     return (
-      <form onSubmit={this.submitAnswer}>
-        <input type='text' className="form-control" ref={this.getAnswer} placeholder="No 'What is' Needed" autofocus='true' />
-        <button type="submit" className="btn btn-lg btn-success" onClick={this.submitAnswer}>Answer</button>
+      <form>
+        <button type="submit" className="btn btn-lg btn-success" onClick={this.checkSpeech}>Speak Answer</button>
+        <button type="submit" className="btn btn-lg btn-danger" onClick={this.close}>Pass</button>
       </form>
     );
   }

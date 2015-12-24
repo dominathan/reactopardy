@@ -6,6 +6,9 @@ var QuestionBlock = React.createClass({
   handleScore: function(amount) {
     this.props.changeScore(amount)
   },
+  handleAnswer: function(answer) {
+    this.props.correctAnswer(answer);
+  },
   render: function() {
     var category = this.props.category;
     var self = this;
@@ -13,6 +16,7 @@ var QuestionBlock = React.createClass({
       return (
         <Question key={idx}
                   changeScore={self.handleScore}
+                  correctAnswer={self.handleAnswer}
                   category={category}
                   question={question.question}
                   answer={question.answer}

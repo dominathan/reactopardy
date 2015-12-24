@@ -15,6 +15,9 @@ var Category = React.createClass({
   handleScore: function(amount) {
     this.props.changeScore(amount)
   },
+  handleAnswer: function(answer) {
+    this.props.correctAnswer(answer);
+  },
   componentDidMount: function() {
     $.get('/category', function(result) {
       if(this.isMounted()) {
@@ -33,7 +36,8 @@ var Category = React.createClass({
         </div>
         <QuestionBlock category={this.state.category.text}
                        questions={this.state.questions}
-                       changeScore={this.handleScore} />
+                       changeScore={this.handleScore}
+                       correctAnswer={this.handleAnswer} />
       </div>
     );
   }

@@ -24771,7 +24771,7 @@
 	var React = __webpack_require__(5);
 	var Router = __webpack_require__(163);
 	var Home = __webpack_require__(215);
-	var Navbar = __webpack_require__(335);
+	var Navbar = __webpack_require__(337);
 	var Route = Router.Route;
 	var IndexRoute = Router.IndexRoute;
 
@@ -24789,8 +24789,8 @@
 
 	var React = __webpack_require__(5);
 	var Category = __webpack_require__(216);
-	var Score = __webpack_require__(334);
-	var CorrectAnswer = __webpack_require__(339);
+	var Score = __webpack_require__(335);
+	var CorrectAnswer = __webpack_require__(336);
 
 	var Home = React.createClass({
 	  displayName: 'Home',
@@ -24863,14 +24863,14 @@
 	    this.props.correctAnswer(answer);
 	  },
 	  componentDidMount: function componentDidMount() {
-	    $.get('/category', (function (result) {
-	      if (this.isMounted()) {
-	        this.setState({
-	          category: { text: result.title },
-	          questions: result.clues
-	        });
-	      }
-	    }).bind(this));
+	    // $.get('/category', function(result) {
+	    //   if(this.isMounted()) {
+	    //     this.setState({
+	    //       category: {text: result.title},
+	    //       questions: result.clues
+	    //     });
+	    //   }
+	    // }.bind(this));
 	  },
 	  render: function render() {
 	    return React.createElement(
@@ -29927,7 +29927,7 @@
 	'use strict';
 
 	var React = __webpack_require__(5);
-	var score = __webpack_require__(336);
+	var score = __webpack_require__(334);
 	var ReactDOM = __webpack_require__(162);
 
 	var Answer = React.createClass({
@@ -29968,7 +29968,8 @@
 	  speechRecognition: function speechRecognition() {
 	    var defer = $.Deferred();
 	    console.log('defer', defer);
-	    var recognition = new webkitSpeechRecognition();
+	    var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition || mozSpeechRecognition || msSpeechRecognition || oSpeechRecognition;
+	    var recognition = new SpeechRecognition();
 	    recognition.continuous = false;
 	    recognition.interimResults = false;
 	    recognition.onresult = function (event) {
@@ -30022,75 +30023,6 @@
 
 /***/ },
 /* 334 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	var React = __webpack_require__(5);
-
-	var Score = React.createClass({
-	  displayName: "Score",
-
-	  propTypes: {
-	    pointTotal: React.PropTypes.number.isRequired
-	  },
-	  render: function render() {
-	    return React.createElement(
-	      "div",
-	      { className: "col-lg-4 col-lg-offset-2 col-md-4 col-md-offset-2" },
-	      React.createElement(
-	        "div",
-	        { className: "score" },
-	        React.createElement(
-	          "h4",
-	          null,
-	          "$",
-	          this.props.pointTotal
-	        )
-	      )
-	    );
-	  }
-	});
-
-	module.exports = Score;
-
-/***/ },
-/* 335 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	var React = __webpack_require__(5);
-
-	var Navbar = React.createClass({
-	  displayName: "Navbar",
-
-	  render: function render() {
-	    return React.createElement(
-	      "div",
-	      { className: "main-container" },
-	      React.createElement(
-	        "nav",
-	        { className: "navbar navbar-default", role: "navigation" },
-	        React.createElement(
-	          "div",
-	          { className: "col-sm-7 col-sm-offset-2", style: { marginTop: 15 } },
-	          "This...Is.........REACT-PARDY"
-	        )
-	      ),
-	      React.createElement(
-	        "div",
-	        { className: "container" },
-	        this.props.children
-	      )
-	    );
-	  }
-	});
-
-	module.exports = Navbar;
-
-/***/ },
-/* 336 */
 /***/ function(module, exports) {
 
 	/*!
@@ -30200,9 +30132,41 @@
 
 
 /***/ },
-/* 337 */,
-/* 338 */,
-/* 339 */
+/* 335 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(5);
+
+	var Score = React.createClass({
+	  displayName: "Score",
+
+	  propTypes: {
+	    pointTotal: React.PropTypes.number.isRequired
+	  },
+	  render: function render() {
+	    return React.createElement(
+	      "div",
+	      { className: "col-lg-4 col-lg-offset-2 col-md-4 col-md-offset-2" },
+	      React.createElement(
+	        "div",
+	        { className: "score" },
+	        React.createElement(
+	          "h4",
+	          null,
+	          "$",
+	          this.props.pointTotal
+	        )
+	      )
+	    );
+	  }
+	});
+
+	module.exports = Score;
+
+/***/ },
+/* 336 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -30229,6 +30193,41 @@
 	});
 
 	module.exports = CorrectAnswer;
+
+/***/ },
+/* 337 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(5);
+
+	var Navbar = React.createClass({
+	  displayName: "Navbar",
+
+	  render: function render() {
+	    return React.createElement(
+	      "div",
+	      { className: "main-container" },
+	      React.createElement(
+	        "nav",
+	        { className: "navbar navbar-default", role: "navigation" },
+	        React.createElement(
+	          "div",
+	          { className: "col-sm-7 col-sm-offset-2", style: { marginTop: 15 } },
+	          "This...Is.........REACT-PARDY"
+	        )
+	      ),
+	      React.createElement(
+	        "div",
+	        { className: "container" },
+	        this.props.children
+	      )
+	    );
+	  }
+	});
+
+	module.exports = Navbar;
 
 /***/ }
 /******/ ]);

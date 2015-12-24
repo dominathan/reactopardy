@@ -37,8 +37,13 @@ var Answer = React.createClass({
   },
   speechRecognition: function() {
     var defer = $.Deferred();
-    console.log('defer', defer) ;
-    var recognition = new webkitSpeechRecognition();
+    console.log('defer', defer);
+    var SpeechRecognition = SpeechRecognition ||
+                            webkitSpeechRecognition ||
+                            mozSpeechRecognition ||
+                            msSpeechRecognition ||
+                            oSpeechRecognition;
+    var recognition = new SpeechRecognition();
     recognition.continuous = false;
     recognition.interimResults = false;
     recognition.onresult = function(event) {

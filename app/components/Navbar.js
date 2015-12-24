@@ -8,6 +8,7 @@ var Navbar = React.createClass({
           <div className="col-sm-7 col-sm-offset-2" style={{marginTop: 15}}>
             This...Is.........REACT-PARDY
           </div>
+          <button className='btn btn-md btn-success'>Restart</button>
         </nav>
         <div className="container">
           {this.props.children}

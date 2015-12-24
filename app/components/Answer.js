@@ -74,7 +74,7 @@ var Answer = React.createClass({
       self.setState({
         loading: false
       });
-      var playerAnswer = data.replace(/^what\sis|^who\sis|^what\sare|^who\sare/gi,"")
+      var playerAnswer = data.replace(/^what\sis\s|^who\sis\s|^what\sare\s|^who\sare\s/gi,"")
                              .replace(/^(the|a|an|a)\s?/gi,"")
                              .replace(/^\s+/gi,"")
                              .toLowerCase();

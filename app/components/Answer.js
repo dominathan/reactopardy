@@ -75,12 +75,12 @@ var Answer = React.createClass({
         loading: false
       });
       var playerAnswer = data.replace(/^what\sis\s|^who\sis\s|^what\sare\s|^who\sare\s/gi,"")
-                             .replace(/^(the|an|a)\s?/gi,"")
+                             .replace(/^(the|an|a)\s+/gi,"")
                              .replace(/^\s+/gi,"")
                              .toLowerCase();
       var realAnswer = self.props.answer.replace(/<([^>]+>)/gi,"")
                                         .replace(/\(|\)/gi,"")
-                                        .replace(/^(the|an|a)\s?/gi,"")
+                                        .replace(/^(the|an|a)\s+/gi,"")
                                         .replace(/"/g,"")
                                         .toLowerCase();
       var pointVal = parseInt(self.props.amount);

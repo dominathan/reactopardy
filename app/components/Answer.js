@@ -28,25 +28,6 @@ var Answer = React.createClass({
   componentDidMount: function() {
     ReactDOM.findDOMNode(this).children[0].focus();
   },
-  submitAnswer: function(event) {
-    event.preventDefault();
-    var playerAnswer = this.answer.value.toLowerCase();
-    var realAnswer = this.props.answer.replace(/<([^>]+>)/gi,"").toLowerCase();
-    var pointVal = parseInt(this.props.amount);
-    this.answer.value = ''
-    console.log('Real Answer: ', realAnswer)
-    console.log('Player Answer: ', playerAnswer)
-    var fuzzyAnswer = realAnswer.score(playerAnswer)
-    console.log("score", fuzzyAnswer)
-    if(fuzzyAnswer >= 0.60) {
-      console.log('CORRECT!!');
-      this.props.changeScore(pointVal);
-    } else {
-      console.log('INCORRECT!!');
-      this.props.changeScore(-pointVal);
-    }
-    this.close();
-  },
   speechRecognition: function() {
     var defer = $.Deferred();
     this.setState({

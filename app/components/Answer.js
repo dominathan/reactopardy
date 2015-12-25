@@ -77,11 +77,13 @@ var Answer = React.createClass({
       var playerAnswer = data.replace(/^what\sis\s|^who\sis\s|^what\sare\s|^who\sare\s/gi,"")
                              .replace(/^(the|an|a)\s+/gi,"")
                              .replace(/^\s+/gi,"")
+                             .replace(/\-/gi," ")
                              .toLowerCase();
       var realAnswer = self.props.answer.replace(/<([^>]+>)/gi,"")
                                         .replace(/\(|\)/gi,"")
                                         .replace(/^(the|an|a)\s+/gi,"")
                                         .replace(/"/g,"")
+                                        .replace(/\-/gi," ")
                                         .toLowerCase();
       var pointVal = parseInt(self.props.amount);
       console.log('Real Answer: ', realAnswer)

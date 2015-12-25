@@ -20,10 +20,19 @@ var Category = React.createClass({
   },
   componentDidMount: function() {
     $.get('/category', function(result) {
+      var randomStart,
+          clues;
+      if(result.clues_count > 5) {
+        randomStart = (Math.ceil(Math.random() * (result.clues_count/5))) * 5;
+        randomStart = randomStart - 5;
+        clues = result.clues.slice(randomStart,randomStart+5);
+      } else {
+        clues = result.clues;
+      };
       if(this.isMounted()) {
         this.setState({
           category: {text: result.title},
-          questions: result.clues
+          questions: clues
         });
       }
     }.bind(this));

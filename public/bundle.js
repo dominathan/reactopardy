@@ -24864,10 +24864,18 @@
 	  },
 	  componentDidMount: function componentDidMount() {
 	    $.get('/category', (function (result) {
+	      var randomStart, clues;
+	      if (result.clues_count > 5) {
+	        randomStart = Math.ceil(Math.random() * (result.clues_count / 5)) * 5;
+	        randomStart = randomStart - 5;
+	        clues = result.clues.slice(randomStart, randomStart + 5);
+	      } else {
+	        clues = result.clues;
+	      };
 	      if (this.isMounted()) {
 	        this.setState({
 	          category: { text: result.title },
-	          questions: result.clues
+	          questions: clues
 	        });
 	      }
 	    }).bind(this));
@@ -29996,8 +30004,8 @@
 	      self.setState({
 	        loading: false
 	      });
-	      var playerAnswer = data.replace(/^what\sis\s|^who\sis\s|^what\sare\s|^who\sare\s/gi, "").replace(/^(the|a|an|a)\s?/gi, "").replace(/^\s+/gi, "").toLowerCase();
-	      var realAnswer = self.props.answer.replace(/<([^>]+>)/gi, "").replace(/\(|\)/gi, "").replace(/^(the|a|an|a)\s?/gi, "").replace(/"/g, "").toLowerCase();
+	      var playerAnswer = data.replace(/^what\sis\s|^who\sis\s|^what\sare\s|^who\sare\s/gi, "").replace(/^(the|an|a)\s+/gi, "").replace(/^\s+/gi, "").replace(/\-/gi, " ").toLowerCase();
+	      var realAnswer = self.props.answer.replace(/<([^>]+>)/gi, "").replace(/\(|\)/gi, "").replace(/^(the|an|a)\s+/gi, "").replace(/"/g, "").replace(/\-/gi, " ").toLowerCase();
 	      var pointVal = parseInt(self.props.amount);
 	      console.log('Real Answer: ', realAnswer);
 	      console.log('Player Answer: ', playerAnswer);
